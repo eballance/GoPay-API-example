@@ -1,0 +1,14 @@
+/* SETTINGS */
+$light_background: #f8f8f8;
+$border: #009ddc;
+
+
+a img { border: none; }
+
+
+
+body { background: white;
+    .container { width: 980px; margin: auto; }
+    #header { background: $light_background; border-bottom: 1px solid $border; padding: 15px 0; }
+    #main { margin-top: 10px; }
+}
