@@ -16,10 +16,12 @@ a img { border: none; }
 body { background: white; margin: 0; padding: 0;
     a { color: black; }
     .container { width: 980px; margin: auto; }
-    #header { background: $light_background; border-bottom: 1px solid $border; padding: 15px 0; }
+    #header { background: $light_background; border-bottom: 1px solid $border; padding: 15px 0; overflow: hidden;
+      a img { float: left; }
+      dl { float: left; width: 300px; margin-left: 50px; margin-bottom: 0px; font-size: 0.9em; }
+    }
     #main { margin-top: 10px; }
     h3 { margin-bottom: 0; margin-left: 20px; font-size: 1em; color: $border;  }
-    dl { float: left; width: 300px; margin-left: 100px; margin-bottom: 30px; }
     form { clear: both;
         fieldset { border: 1px solid $border; }
         legend { font-weight: bold; color: $border; }

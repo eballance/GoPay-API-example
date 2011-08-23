@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(params[:order])
     if @order.save and @order.save_on_gopay
-      @order.submit
+      @order.submit!
       flash[:notice] = "Vytvoreno!"
       redirect_to :action => :index
     else

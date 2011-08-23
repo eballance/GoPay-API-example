@@ -13,6 +13,19 @@
 <div id="header">
   <div class="container">
     <%= link_to image_tag("logo.gif"), root_path %>
+    <dl>
+      <dt>GoId:</dt>
+      <dd><strong><%= GoPay.configuration.goid %></strong></dd>
+      <dt>Secret:</dt>
+      <dd><strong><%= GoPay.configuration.secret %></strong></dd>
+    </dl>
+
+    <dl>
+      <dt>Success URL:</dt>
+      <dd><strong><%= GoPay.configuration.success_url %></strong></dd>
+      <dt>Failed URL:</dt>
+      <dd><strong><%= GoPay.configuration.failed_url %></strong></dd>
+    </dl>
   </div>
 </div>
 
