@@ -3,6 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.1.0.rc6'
 
 gem 'mysql2'
+gem 'pg'
 gem 'jquery-rails'
 gem 'json'
 

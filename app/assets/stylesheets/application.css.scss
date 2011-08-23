@@ -7,7 +7,7 @@ a img { border: none; }
 
 
 
-body { background: white;
+body { background: white; margin: 0; padding: 0;
     .container { width: 980px; margin: auto; }
     #header { background: $light_background; border-bottom: 1px solid $border; padding: 15px 0; }
     #main { margin-top: 10px; }
