@@ -51,6 +51,7 @@ namespace :site do
   desc "Create or update symlinks "
   task :create_symlinks do
     run "ln -nfs #{deploy_to}/shared/config/database.yml #{release_path}/config/database.yml"
+    run "ln -nfs #{deploy_to}/shared/config/gopay.yml #{release_path}/config/gopay.yml"
   end
 
   desc "Precompile assets"
