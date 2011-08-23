@@ -1,6 +1,3 @@
-<h3>Konfigurace GoPay:</h3>
-
-
 <%= form_for @order do |f| %>
 
     <fieldset>
@@ -17,7 +14,7 @@
       </p>
 
       <p>
-        <%= f.label :price, "Částka:" %>
+        <%= f.label :price, "Částka v halířích:" %>
         <%= f.text_field :price, :class => "text-field" %>
       </p>
 
@@ -42,17 +39,18 @@
   </thead>
   <tbody>
   <% Order.order("created_at asc").each do |order| %>
+  <% state = order.actual_state %>
       <tr>
         <td><%= order.id %></td>
         <td><%= order.payment_session_id %></td>
         <td><%= order.name %></td>
         <td><%= order.price %></td>
         <td><%= l order.created_at, :format => :short %></td>
-        <td><%= order.actual_state %></td>
+        <td><%= state %></td>
         <td><%= link_to "Odstranit", order_path(order),
                         :confirm => "Opravdu chcete tuto objednávku odstranit?",
                         :method => :delete %>
-        <%= link_to_gopay("Zaplatit", order) %></td>
+        <%= link_to_gopay("Zaplatit", order) unless state == "PAYMENT_DONE" %></td>
       </tr>
 
   <% end %>
