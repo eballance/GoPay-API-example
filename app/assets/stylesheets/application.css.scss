@@ -8,16 +8,15 @@ $error_light: #ffe2d0;
 $valid: #3a7436;
 $valid_dark: #20491d;
 $valid_light: #d3e0d2;
+$color: #545454;
+
 
 a img { border: none; }
-
-
-
 body { background: white; margin: 0; padding: 0;
     a { color: black; }
     .container { width: 980px; margin: auto; }
-    #header { background: $light_background; border-bottom: 1px solid $border; padding: 15px 0; overflow: hidden;
-      a img { float: left; }
+    #header { background: $light_background; border-bottom: 1px solid $border; padding: 5px 0; overflow: hidden;  color: $color;
+      a img { float: left; margin: 25px 0; }
       dl { float: left; width: 300px; margin-left: 50px; margin-bottom: 0px; font-size: 0.9em; }
     }
     #main { margin-top: 10px; }
