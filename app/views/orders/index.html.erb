@@ -1,0 +1,72 @@
+<h3>Konfigurace GoPay:</h3>
+<dl>
+  <dt>GoId:</dt>
+  <dd><strong><%= GoPay.configuration.goid %></strong></dd>
+  <dt>Secret:</dt>
+  <dd><strong><%= GoPay.configuration.secret %></strong></dd>
+</dl>
+
+<dl>
+  <dt>Success URL:</dt>
+  <dd><strong><%= GoPay.configuration.success_url %></strong></dd>
+  <dt>Failed URL:</dt>
+  <dd><strong><%= GoPay.configuration.failed_url %></strong></dd>
+</dl>
+
+<%= form_for @order do |f| %>
+
+    <fieldset>
+      <legend>Vytvořit novou testovací platbu</legend>
+
+      <p>
+        <%= f.label :name, "Jméno produktu:" %>
+        <%= f.text_field :name, :class => "text-field" %>
+      </p>
+
+      <p>
+        <%= f.label :payment_method_code, "Platební kanál:" %>
+        <%= f.select :payment_method_code, options_for_select(@payment_methods.map { |p| [p.payment_method, p.code] }), :class => "select" %>
+      </p>
+
+      <p>
+        <%= f.label :price, "Částka:" %>
+        <%= f.text_field :price, :class => "text-field" %>
+      </p>
+
+      <p>
+        <%= f.submit "Vytvořit platbu na GoPay bráně", :class => "submit" %>
+      </p>
+
+    </fieldset>
+<% end %>
+
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>PSID</th>
+    <th>Název</th>
+    <th>Částka</th>
+    <th>Datum</th>
+    <th>Stav</th>
+    <th>Akce</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% Order.order("created_at asc").each do |order| %>
+      <tr>
+        <td><%= order.id %></td>
+        <td><%= order.payment_session_id %></td>
+        <td><%= order.name %></td>
+        <td><%= order.price %></td>
+        <td><%= l order.created_at %></td>
+        <td><%= order.state %></td>
+        <td><%= link_to "Odstranit", order_path(order),
+                        :confirm => "Opravdu chcete tuto objednávku odstranit?",
+                        :method => :delete %></td>
+      </tr>
+
+  <% end %>
+  </tbody>
+</table>
+

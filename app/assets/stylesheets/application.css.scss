@@ -1,14 +1,42 @@
 /* SETTINGS */
 $light_background: #f8f8f8;
 $border: #009ddc;
-
+$button_background: #4994b3;
+$error: #b84804;
+$error_dark: #b72727;
+$error_light: #ffe2d0;
+$valid: #3a7436;
+$valid_dark: #20491d;
+$valid_light: #d3e0d2;
 
 a img { border: none; }
 
 
 
 body { background: white; margin: 0; padding: 0;
+    a { color: black; }
     .container { width: 980px; margin: auto; }
     #header { background: $light_background; border-bottom: 1px solid $border; padding: 15px 0; }
     #main { margin-top: 10px; }
+    h3 { margin-bottom: 0; margin-left: 20px; font-size: 1em; color: $border;  }
+    dl { float: left; width: 300px; margin-left: 100px; margin-bottom: 30px; }
+    form { clear: both;
+        fieldset { border: 1px solid $border; }
+        legend { font-weight: bold; color: $border; }
+        label { float: left; width: 300px; text-align: right; padding-right: 10px; padding-top: 3px; }
+        .submit { float: left; margin-left: 310px; padding: 4px; color: white; font-weight: bold;
+        background: $button_background; border: 2px solid $button_background; cursor: pointer; }
+    }
+
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; 
+        th { text-align: center; color: $border; }
+        td { text-align: center; border: 1px solid $border; }
+    }
+}
+
+#flash { text-align:center; margin: 10px auto; width: 300px;
+    p { margin:0; font-weight:bold; border:0; padding: 10px; background: none;
+        &.notice { border: 2px solid $valid; color: $valid; background: $valid_light; }
+        &.error { border: 2px solid $error; color: $error; background: $error_light; }
+    }
 }
