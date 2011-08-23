@@ -34,6 +34,7 @@
     <th>Částka</th>
     <th>Datum</th>
     <th>Stav</th>
+    <th>Stav DB</th>
     <th>Akce</th>
   </tr>
   </thead>
@@ -47,6 +48,7 @@
         <td><%= order.price %></td>
         <td><%= l order.created_at, :format => :short %></td>
         <td><%= state %></td>
+        <td><%= order.state %></td>
         <td><%= link_to "Odstranit", order_path(order),
                         :confirm => "Opravdu chcete tuto objednávku odstranit?",
                         :method => :delete %>

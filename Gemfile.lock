@@ -1,6 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    aasm (2.2.0)
     actionmailer (3.1.0.rc6)
       actionpack (= 3.1.0.rc6)
       mail (~> 2.3.0)
@@ -115,6 +116,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aasm
   gopay
   jquery-rails
   json

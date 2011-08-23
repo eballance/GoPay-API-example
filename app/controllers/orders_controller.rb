@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
 
   before_filter :check_identity, :only => [:notification, :success]
-  
+
   def index
     @payment_methods = GoPay::PaymentMethod.all
     @order = Order.new
@@ -11,6 +11,7 @@ class OrdersController < ApplicationController
     @order = Order.new(params[:order])
     if @order.save and @order.save_on_gopay
       flash[:notice] = "Vytvoreno!"
+      @order.submit!
       redirect_to :action => :index
     else
       flash[:error] = "NEvytvoreno!"
@@ -25,7 +26,15 @@ class OrdersController < ApplicationController
   end
 
   def notification
-    flash[:notice] = "Vše v pořádku."
+    order = Order.find_by_payment_session_id(params[:paymentSessionId])
+    case order.actual_state
+      when GoPay::PAYMENT_DONE
+        order.pay!
+      when GoPay::TIMEOUTED
+        order.timeout!
+      when GoPay::CANCELED
+        order.cancel!
+    end
     redirect_to root_path
   end
 
@@ -45,7 +54,7 @@ class OrdersController < ApplicationController
                                            :variable_symbol => params[:variableSymbol],
                                            :payment_session_id => params[:paymentSessionId])
     if !payment_identity.valid_for_signature?(params[:encryptedSignature])
-      flash[:error] = "Platba #{params[:paymentSessionId]} nebyla ověřena!"
+      flash[:error] = "Platba #{params[:paymentSessionId]} byla podvržena!"
       redirect_to root_path
     end
   end
