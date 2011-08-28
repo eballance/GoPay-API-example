@@ -1,3 +1,9 @@
+PATH
+  remote: vendor/plugins/gopay
+  specs:
+    gopay (0.0.1)
+      savon
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -37,8 +43,6 @@ GEM
     bcrypt-ruby (2.1.4)
     builder (3.0.0)
     erubis (2.7.0)
-    gopay (0.0.1)
-      savon
     gyoku (0.4.4)
       builder (>= 2.1.2)
     hike (1.2.1)
@@ -91,7 +95,7 @@ GEM
       actionpack (~> 3.1.0.rc6)
       railties (~> 3.1.0.rc6)
       sass (>= 3.1.4)
-    savon (0.9.6)
+    savon (0.9.7)
       akami (~> 1.0)
       builder (>= 2.1.2)
       gyoku (>= 0.4.0)
@@ -117,7 +121,7 @@ PLATFORMS
 
 DEPENDENCIES
   aasm
-  gopay
+  gopay!
   jquery-rails
   json
   mysql2

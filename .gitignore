@@ -1,6 +1,7 @@
 .idea
 .rvmrc
 config/database.yml
+config/gopay.yml
 log/*.log
 tmp/
 .sass-cache/
