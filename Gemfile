@@ -1,9 +1,9 @@
 source 'http://rubygems.org'
+source 'http://gems.defactory.net'
 
 gem 'rails', '3.1.0.rc6'
 
-gem 'mysql2'
-gem 'pg'
+gem 'sqlite3'
 gem 'jquery-rails'
 gem 'json'
 gem 'sprockets', '= 2.0.0.beta.12'
