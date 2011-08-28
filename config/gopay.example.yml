@@ -1,0 +1,4 @@
+goid: here goes your GoId
+success_url: http://gopay.defactory.net/orders/success
+failed_url: http://gopay.defactory.net/orders/failed
+secret: here goes your secret
