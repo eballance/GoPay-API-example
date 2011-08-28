@@ -17,7 +17,7 @@ set :copy_exclude, %w(test .git doc)
 set :bundle_cmd, "/usr/local/bin/bundle"
 
 # Symlinks
-set :normal_symlinks, []#["config/database.yml"]
+set :normal_symlinks, ["config/database.yml", "config/gopay.yml"]
 
 set :directory_symlinks, {
   'assets'   => 'public/assets',
