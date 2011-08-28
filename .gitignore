@@ -5,3 +5,4 @@ config/gopay.yml
 log/*.log
 tmp/
 .sass-cache/
+db/*.sqlite3
