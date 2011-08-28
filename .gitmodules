@@ -1,0 +1,3 @@
+[submodule "vendor/plugins/gopay"]
+	path = vendor/plugins/gopay
+	url = git@178.79.143.232:repos/gopay.git
