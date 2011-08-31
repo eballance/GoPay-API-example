@@ -35,13 +35,19 @@ class Order < ActiveRecord::Base
     save!
   end
 
-  def actual_state
-    payment = GoPay::EshopPayment.new(:variable_symbol => "gopay_test_#{GoPay.configuration.goid}",
-                                      :total_price_in_cents => price.to_i,
-                                      :product_name => name,
-                                      :payment_session_id => payment_session_id,
-                                      :payment_channels => [])
-    payment.actual_session_state
+  def payment
+    GoPay::EshopPayment.new(:variable_symbol => "gopay_test_#{GoPay.configuration.goid}",
+                            :total_price_in_cents => price.to_i,
+                            :product_name => name,
+                            :payment_session_id => payment_session_id,
+                            :payment_channels => []).actual
+  end
+
+  def payment_attrs
+    response = payment.last_response
+    ppayment_chanel = response[:payment_channel].is_a?(Hash) ? "" : payment.last_response[:payment_channel]
+    {:payment_channel => ppayment_chanel,
+     :session_state => response[:session_state]}
   end
 
   def gopay_url

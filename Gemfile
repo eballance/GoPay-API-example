@@ -12,5 +12,6 @@ gem "sass-rails"
 gem "jquery-rails"
 
 gem 'aasm'
+
+#gem 'gopay' #, :path => "vendor/plugins/gopay"
 gem 'savon'
-#gem 'gopay'#, :path => "vendor/plugins/gopay"
