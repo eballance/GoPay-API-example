@@ -13,4 +13,4 @@ gem "jquery-rails"
 
 gem 'aasm'
 
-gem 'gopay', '0.0.4'
+gem 'gopay', '0.0.5'
