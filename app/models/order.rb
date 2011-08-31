@@ -1,6 +1,6 @@
 class Order < ActiveRecord::Base
 
-    include AASM
+  include AASM
 
   aasm_column :state
   aasm_initial_state :new
@@ -25,13 +25,12 @@ class Order < ActiveRecord::Base
   aasm_event :pay do
     transitions :to => :payment_done, :from => [:waiting]
   end
-    
+
   def save_on_gopay
-    payment = GoPay::EshopPayment.new(:variable_symbol => "gopay_test_#{GoPay.configuration.goid}",
-                                      :total_price_in_cents => price.to_i,
-                                      :product_name => name,
-                                      :payment_channel => payment_method_code
-    ).create
+    payment = GoPay::EshopPayment.new({:variable_symbol => "gopay_test_#{GoPay.configuration.goid}",
+                                       :total_price_in_cents => price.to_i,
+                                       :product_name => name,
+                                       :payment_channels => payment_method_code.present? ? [payment_method_code] : GoPay::PaymentMethod.all.map(&:code)}).create
     self.payment_session_id = payment.payment_session_id
     save!
   end
@@ -41,7 +40,12 @@ class Order < ActiveRecord::Base
                                       :total_price_in_cents => price.to_i,
                                       :product_name => name,
                                       :payment_session_id => payment_session_id,
-                                      :payment_channels => ["cz_gp_w"])
+                                      :payment_channels => [])
     payment.actual_session_state
   end
+
+  def gopay_url
+    GoPay::Payment.new(:payment_session_id => payment_session_id).gopay_url
+  end
+
 end

@@ -12,7 +12,11 @@ class OrdersController < ApplicationController
     if @order.save and @order.save_on_gopay
       flash[:notice] = "Vytvoreno!"
       @order.submit!
-      redirect_to :action => :index
+      if params[:redirect_to_gopay] and params[:redirect_to_gopay] == "1"
+        redirect_to @order.gopay_url
+      else
+        redirect_to :action => :index
+      end
     else
       flash[:error] = "NEvytvoreno!"
       render :action => :index

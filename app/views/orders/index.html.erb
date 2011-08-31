@@ -1,3 +1,5 @@
+<%= GoPay.configuration.environment %>
+
 <%= form_for @order do |f| %>
 
     <fieldset>
@@ -16,6 +18,11 @@
       <p>
         <%= f.label :price, "Částka v halířích:" %>
         <%= f.text_field :price, :class => "text-field" %>
+      </p>
+
+      <p>
+        <%= label_tag :redirect_to_gopay, "Okamžitě zaplatit?:" %>
+        <%= check_box_tag :redirect_to_gopay %>
       </p>
 
       <p>
