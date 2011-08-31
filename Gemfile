@@ -13,5 +13,4 @@ gem "jquery-rails"
 
 gem 'aasm'
 
-#gem 'gopay' #, :path => "vendor/plugins/gopay"
-gem 'savon'
+gem 'gopay', '0.0.3'
