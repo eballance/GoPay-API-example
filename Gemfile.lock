@@ -38,7 +38,7 @@ GEM
     bcrypt-ruby (3.0.0)
     builder (3.0.0)
     erubis (2.7.0)
-    gopay (0.0.3)
+    gopay (0.0.4)
       savon
     gyoku (0.4.4)
       builder (>= 2.1.2)
@@ -117,7 +117,7 @@ PLATFORMS
 
 DEPENDENCIES
   aasm
-  gopay (= 0.0.3)
+  gopay (= 0.0.4)
   jquery-rails
   json
   rails (= 3.1.0)
