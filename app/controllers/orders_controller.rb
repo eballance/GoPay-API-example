@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
 
   def notification
     order = Order.find_by_payment_session_id(params[:paymentSessionId])
-    case order.actual_state
+    case order.payment_attrs[:session_state]
       when GoPay::PAYMENT_DONE
         order.pay!
       when GoPay::TIMEOUTED
