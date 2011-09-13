@@ -61,11 +61,11 @@ class OrdersController < ApplicationController
     order = Order.find_by_payment_session_id(params[:paymentSessionId])
     case order.payment_attrs[:session_state]
       when GoPay::PAYMENT_DONE
-        order.pay!
+        order.pay! unless order.payed?
       when GoPay::TIMEOUTED
-        order.timeout!
+        order.timeout! unless order.timeouted?
       when GoPay::CANCELED
-        order.cancel!
+        order.cancel! unless order.canceled?
     end
   end
 
