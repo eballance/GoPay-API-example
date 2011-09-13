@@ -31,19 +31,19 @@ class OrdersController < ApplicationController
 
   def notification
     process_order
-    render :template => "notification"
+    render :template => "orders/notification"
   end
 
   def success
     flash[:notice] = "Vše v pořádku."
     process_order
-    render :template => "notification"
+    render :template => "orders/notification"
   end
 
   def failed
     flash[:error] = "Tu se něco rozbilo!"
     process_order
-    render :template => "notification"
+    render :template => "orders/notification"
   end
 
   private
