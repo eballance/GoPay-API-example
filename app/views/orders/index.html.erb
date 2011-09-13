@@ -10,7 +10,10 @@
 
       <p>
         <%= f.label :payment_method_code, "Platební kanál:" %>
-        <%= f.select :payment_method_code, options_for_select(@payment_methods.map { |p| [p.payment_method, p.code] }), :class => "select" %>
+        <%= f.select :payment_method_code,
+                     options_for_select(@payment_methods.map { |p| [p.payment_method, p.code] }),
+                     {:include_blank => true},
+                     {:class => "select"} %>
       </p>
 
       <p>
@@ -59,7 +62,7 @@
         <td><%= link_to "Odstranit", order_path(order),
                         :confirm => "Opravdu chcete tuto objednávku odstranit?",
                         :method => :delete %>
-        <%= link_to_gopay("Zaplatit", order) unless order.payment_attrs[:session_state] == "PAYMENT_DONE" %></td>
+          <%= link_to_gopay("Zaplatit", order) unless order.payment_attrs[:session_state] == "PAYMENT_DONE" %></td>
       </tr>
 
   <% end %>
