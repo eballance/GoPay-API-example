@@ -68,7 +68,7 @@
         <td><%= link_to "Odstranit", order_path(order),
                         :confirm => "Opravdu chcete tuto objednávku odstranit?",
                         :method => :delete %>
-          <%= link_to_gopay("Zaplatit", order) unless order.state == "payment_done" %></td>
+          <%= link_to_gopay("Zaplatit", order) if order.state == "waiting" %></td>
       </tr>
 
   <% end %>
