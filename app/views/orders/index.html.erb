@@ -56,13 +56,19 @@
         <td><%= order.name %></td>
         <td><%= order.price %></td>
         <td><%= l order.created_at, :format => :short %></td>
-        <td><%= order.payment_attrs[:payment_channel] %></td>
-        <td><%= order.payment_attrs[:session_state] %></td>
+        <!-- <td><%# order.payment_attrs[:payment_channel] %></td>-->
+        <td>
+          <% if order.state == "waiting" %>
+              <%= order.payment_attrs[:session_state] %>
+          <% else %>
+              <%= "FINAL" %>
+          <% end %>
+        </td>
         <td><%= order.state %></td>
         <td><%= link_to "Odstranit", order_path(order),
                         :confirm => "Opravdu chcete tuto objednávku odstranit?",
                         :method => :delete %>
-          <%= link_to_gopay("Zaplatit", order) unless order.payment_attrs[:session_state] == "PAYMENT_DONE" %></td>
+          <%= link_to_gopay("Zaplatit", order) unless order.state == "payment_done" %></td>
       </tr>
 
   <% end %>
