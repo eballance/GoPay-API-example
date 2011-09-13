@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
 
   def index
     @payment_methods = GoPay::PaymentMethod.all
+    Order.where(["status = 'waiting' and created_at < ", 5.minutes.ago]).each {|o| o.timeout! }
     @order = Order.new
   end
 
