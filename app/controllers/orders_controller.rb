@@ -59,6 +59,7 @@ class OrdersController < ApplicationController
 
   def process_order
     order = Order.find_by_payment_session_id(params[:paymentSessionId])
+	return if order.payed?
     case order.payment_attrs[:session_state]
       when GoPay::PAYMENT_DONE
         order.pay! unless order.payed?
