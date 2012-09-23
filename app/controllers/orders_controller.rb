@@ -48,10 +48,9 @@ class OrdersController < ApplicationController
 
   private
   def check_identity
-    payment_identity = PaymentIdentity.new(:goid => params[:eshopGoId],
-                                           :variable_symbol => params[:variableSymbol],
-                                           :payment_session_id => params[:paymentSessionId])
-    if !payment_identity.valid_for_signature?(params[:encryptedSignature])
+    order = Order.find_by_payment_session_id(params[:paymentSessionId])
+    payment = order.payment
+    unless payment.valid_identity?(params)
       flash[:error] = "Platba #{params[:paymentSessionId]} byla podvržena!"
       redirect_to root_path
     end
@@ -60,11 +59,11 @@ class OrdersController < ApplicationController
   def process_order
     order = Order.find_by_payment_session_id(params[:paymentSessionId])
     case order.payment_attrs[:session_state]
-      when GoPay::PAYMENT_DONE
-        order.pay! unless order.payment_done?
-      when GoPay::TIMEOUTED
+      when GoPay::STATUSES[:paid]
+        order.pay! unless order.paid?
+      when GoPay::STATUSES[:timeouted]
         order.timeout! unless order.timeouted?
-      when GoPay::CANCELED
+      when GoPay::STATUSES[:canceled]
         order.cancel! unless order.canceled?
     end
   end

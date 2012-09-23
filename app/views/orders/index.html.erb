@@ -9,9 +9,9 @@
       </p>
 
       <p>
-        <%= f.label :payment_method_code, "Platební kanál:" %>
+        <%= f.label :currency, "Měna:" %>
         <%= f.select :payment_method_code,
-                     options_for_select(@payment_methods.map { |p| [p.payment_method, p.code] }),
+                     options_for_select(['CZK', 'EUR']),
                      {:include_blank => true},
                      {:class => "select"} %>
       </p>

@@ -1,5 +1,4 @@
 source 'http://rubygems.org'
-source 'http://gems.defactory.net'
 
 gem 'rails', '3.1.0'
 
@@ -13,4 +12,4 @@ gem "jquery-rails"
 
 gem 'aasm'
 
-gem 'gopay', '0.0.5'
+gem 'gopay', '0.1.0'
